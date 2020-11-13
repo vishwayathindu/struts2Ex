@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+    
+    <package extends="struts-default,json-default" name="example" namespace="/example">
+        
+        <interceptors>  
+            <interceptor name="loginIntercept" class="com.vish.util.LogInIntercept">
+            </interceptor> 
+            <interceptor-stack name="logInStack">
+                <interceptor-ref name="loginIntercept"/>
+                <interceptor-ref name="defaultStack"/>
+            </interceptor-stack>
+        </interceptors>
+        <global-results>
+            <result name="login">/example/login.jsp</result>
+        </global-results>
+        
+        <action name="*User" method="{1}" class="com.vish.controller.SignUp">
+            <result name="Registerd">/example/login.jsp</result>
+        </action>
+        
+ 
+        <action name="*Login" method="{1}" class="com.vish.controller.Login">
+            <result name="success" type="redirect">viewDashBoard.blb</result>
+            <result name="fail" >/example/login.jsp</result>
+        </action>
+        
+        <action name="signUpReq">
+            <result>signUp.jsp</result>  
+        </action>
+        
+        
+        <action name="*DashBoard" method="{1}" class="com.vish.controller.Dashboard">
+            <interceptor-ref name="logInStack" />
+            <result name="success">/example/dashBoard.jsp</result>
+            <result name="jRetrive" type="json"></result>
+            <result name="Find" type="json"></result>
+            <result name="EditJSuccess" type="json"></result>
+            <result name="DeletedJSuccess" type="json"></result>
+        </action>
+        
+        <action name="jReDashBoard">
+            <result>/example/logUserDetails.jsp</result>
+        </action>
+        
+        <action name="*Users" method="{1}" class="com.vish.controller.UserUpdateAction">
+            <interceptor-ref name="logInStack" />
+            <result name="edited">/example/edit.jsp</result>
+            <result name="updated" type="redirect">viewDashBoard.blb</result>
+            <result name="deleted" type="redirect">viewDashBoard.blb</result>
+            <result name="logOut">/example/login.jsp</result>
+        </action>
+        
+        
+        
+                       
+    </package>
+    
+    
+</struts>
+

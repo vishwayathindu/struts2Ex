@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 21, 2020 10:32:49 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="webapp" name="com.vish.entity.Student" optimistic-lock="version" table="student">
+    <id name="studentId" type="java.lang.Integer">
+      <column name="studentId"/>
+      <generator class="identity"/>
+    </id>
+    <property name="studentName" type="string">
+      <column name="StudentName" not-null="true"/>
+    </property>
+    <property name="nic" type="string">
+      <column length="12" name="nIC" not-null="true"/>
+    </property>
+    <property name="password" type="string">
+      <column name="password" not-null="true"/>
+    </property>
+    <property name="gender" type="string">
+      <column length="10" name="gender" not-null="true"/>
+    </property>
+  </class>
+</hibernate-mapping>
